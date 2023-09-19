@@ -1,17 +1,9 @@
 .container {
-    width: 100%;
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
 
-    padding: 7rem 5rem;
-
     gap: 4rem;
-
-    h1 {
-        width: 380px;
-        padding: 2rem;
-    }
 
     form {
         width: 340px;
@@ -87,11 +79,7 @@
 
 @media (max-width: 460px) {
     .container {
-        padding: 2rem;
-
-        h1 {
-            padding: 0;
-        }
+        padding: 0;
 
         form {
             width: 100%;

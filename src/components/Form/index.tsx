@@ -7,11 +7,6 @@ import LockOpenIcon from '@mui/icons-material/LockOpen'
 export default function Form() {
     return (
         <div className={styles.container}>
-            <h1>
-                A plataforma para você aprender com experts, dominar as
-                principais tecnologias e entrar mais rápido nas empresas mais
-                desejadas.
-            </h1>
             <div>
                 <form>
                     <h2>Comece agora grátis</h2>

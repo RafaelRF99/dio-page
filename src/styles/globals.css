@@ -1,6 +1,7 @@
 :root {
   --background-color: #1E192C;
   --text-color: #FFF;
+  --text-color-title: #E4105D;
 }
 
 * {

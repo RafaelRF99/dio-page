@@ -1,9 +1,15 @@
-import Image from 'next/image'
-
 import styles from './Menu.module.scss'
+
+import Image from 'next/image'
 import Link from 'next/link'
 
+import { useAuth } from '@/data/hooks/useAuth'
+import { useRouter } from 'next/router'
+
 export default function Menu() {
+    const router = useRouter()
+    const { user } = useAuth()
+
     return (
         <menu className={styles.container}>
             <div className={styles.img}>
@@ -16,10 +22,19 @@ export default function Menu() {
                     />
                 </Link>
             </div>
-            <div className={styles.btn}>
-                <button>Entrar</button>
-                <button>Cadastrar</button>
-            </div>
+            {user.uid ? (
+                <div className={styles.icon}>
+                    <Image src={user.photoURL ? user.photoURL : '/usuario.svg'} alt={user.displayName!}
+                        width={100} height={37} />
+                </div>
+            ) : (
+                <>
+                    <div className={styles.btn}>
+                        <button onClick={() => router.push('/autenticacao')}>Entrar</button>
+                        <button onClick={() => router.push('/autenticacao')}>Cadastrar</button>
+                    </div>
+                </>
+            )}
         </menu>
     )
 }

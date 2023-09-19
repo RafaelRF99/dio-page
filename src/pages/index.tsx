@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import { Open_Sans } from 'next/font/google'
-import Menu from '@/components/Menu'
+
+import Layout from '@/components/Layout'
+import Form from '@/components/Form'
 
 const inter = Open_Sans({ subsets: ['latin'] })
 
@@ -20,7 +22,9 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main className={inter.className}>
-                <Menu />
+                <Layout>
+                    <Form />
+                </Layout>
             </main>
         </>
     )

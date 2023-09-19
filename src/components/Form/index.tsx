@@ -5,6 +5,7 @@ import EmailIcon from '@mui/icons-material/Email'
 import LockOpenIcon from '@mui/icons-material/LockOpen'
 
 import { useForm } from 'react-hook-form'
+import { useState } from 'react'
 
 interface Login {
     name: string
@@ -13,6 +14,7 @@ interface Login {
 }
 
 export default function Form() {
+    const [isLogin, setIsLogin] = useState(false)
     const {
         register,
         handleSubmit,
@@ -57,17 +59,21 @@ export default function Form() {
                                 ''
                             )}
                         </div>
-                        <div className={styles.content}>
-                            <div>
-                                <EmailIcon fontSize="small" />
+                        {isLogin ? (
+                            ''
+                        ) : (
+                            <div className={styles.content}>
+                                <div>
+                                    <EmailIcon fontSize="small" />
+                                </div>
+                                <input
+                                    type="email"
+                                    placeholder="E-mail"
+                                    autoComplete="username"
+                                    {...register('email', { required: true })}
+                                />
                             </div>
-                            <input
-                                type="email"
-                                placeholder="E-mail"
-                                autoComplete="username"
-                                {...register('email', { required: true })}
-                            />
-                        </div>
+                        )}
                         <div className={styles.content}>
                             <div>
                                 <LockOpenIcon fontSize="small" />
@@ -87,13 +93,29 @@ export default function Form() {
                             )}
                         </div>
                         <div className={styles.btn}>
-                            <button>Criar minha conta</button>
+                            {isLogin ? (
+                                <button>Entrar</button>
+                            ) : (
+                                <button>Criar minha conta</button>
+                            )}
                         </div>
                     </div>
                 </form>
-                <p>
-                    Já tem conta. <span>Fazer login</span>
-                </p>
+                {isLogin ? (
+                    <p>
+                        Não tem conta?.{' '}
+                        <span onClick={() => setIsLogin(false)}>
+                            Fazer cadastro
+                        </span>
+                    </p>
+                ) : (
+                    <p>
+                        Já tem conta.{' '}
+                        <span onClick={() => setIsLogin(true)}>
+                            Fazer login
+                        </span>
+                    </p>
+                )}
             </div>
         </div>
     )

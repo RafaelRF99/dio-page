@@ -6,6 +6,7 @@ import LockOpenIcon from '@mui/icons-material/LockOpen'
 
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
+import { useAuth } from '@/data/hooks/useAuth'
 
 interface Login {
     name: string
@@ -14,15 +15,24 @@ interface Login {
 }
 
 export default function Form() {
-    const [isLogin, setIsLogin] = useState(false)
+    const [isLogin, setIsLogin] = useState(true)
+    const { cadastrar, login, user } = useAuth()
+
     const {
         register,
         handleSubmit,
+        resetField,
         formState: { errors },
     } = useForm<Login>()
 
     function handleSave(data: Login) {
-        console.log(data)
+        if (isLogin) {
+            login?.(data.email, data.pass)
+        } else {
+            cadastrar?.(data.email, data.pass)
+            setIsLogin(true)
+        }
+        resetField('name'), resetField('email'), resetField('pass')
     }
 
     return (
@@ -32,55 +42,55 @@ export default function Form() {
                     <h2>Comece agora grátis</h2>
                     <h3>Crie sua conta e make the change.</h3>
                     <div className={styles.inputs}>
-                        <div className={styles.content}>
-                            <div>
-                                <PersonIcon fontSize="small" />
-                            </div>
-                            <input
-                                type="text"
-                                placeholder="Nome completo"
-                                {...register('name', {
-                                    required: true,
-                                    minLength: 7,
-                                })}
-                            />
-                            {errors.name?.type === 'required' ? (
-                                <p className={styles.error}>
-                                    *Campo obrigatório
-                                </p>
-                            ) : (
-                                ''
-                            )}
-                            {errors.name?.type === 'minLength' ? (
-                                <p className={styles.error}>
-                                    *Mínimo de caracter 7
-                                </p>
-                            ) : (
-                                ''
-                            )}
-                        </div>
                         {isLogin ? (
                             ''
                         ) : (
                             <div className={styles.content}>
                                 <div>
-                                    <EmailIcon fontSize="small" />
+                                    <PersonIcon fontSize="small" />
                                 </div>
                                 <input
-                                    type="email"
-                                    placeholder="E-mail"
-                                    autoComplete="username"
-                                    {...register('email', { required: true })}
+                                    type="text"
+                                    placeholder="Nome completo"
+                                    {...register('name', {
+                                        required: true,
+                                        minLength: 7,
+                                    })}
                                 />
+                                {errors.name?.type === 'required' ? (
+                                    <p className={styles.error}>
+                                        *Campo obrigatório
+                                    </p>
+                                ) : (
+                                    ''
+                                )}
+                                {errors.name?.type === 'minLength' ? (
+                                    <p className={styles.error}>
+                                        *Mínimo de caracter 7
+                                    </p>
+                                ) : (
+                                    ''
+                                )}
                             </div>
                         )}
+                        <div className={styles.content}>
+                            <div>
+                                <EmailIcon fontSize="small" />
+                            </div>
+                            <input
+                                type="email"
+                                placeholder="E-mail"
+                                autoComplete="username"
+                                {...register('email', { required: true })}
+                            />
+                        </div>
                         <div className={styles.content}>
                             <div>
                                 <LockOpenIcon fontSize="small" />
                             </div>
                             <input
                                 type="password"
-                                placeholder="Passwordd"
+                                placeholder="Password"
                                 autoComplete="current-password"
                                 {...register('pass', { required: true })}
                             />

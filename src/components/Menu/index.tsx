@@ -11,9 +11,8 @@ export default function Menu() {
                     <Image
                         src="/logo-dio.png"
                         alt="DIO"
-                        layout="fill"
-                        objectFit="contain"
-                        sizes="100%"
+                        width={100}
+                        height={37}
                     />
                 </Link>
             </div>

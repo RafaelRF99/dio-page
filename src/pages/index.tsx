@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { Open_Sans } from 'next/font/google'
+import Menu from '@/components/Menu'
 
 const inter = Open_Sans({ subsets: ['latin'] })
 
@@ -19,7 +20,7 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main className={inter.className}>
-                <h1>DIO</h1>
+                <Menu />
             </main>
         </>
     )

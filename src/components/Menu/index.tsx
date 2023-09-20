@@ -18,21 +18,24 @@ export default function Menu() {
                         src="/logo-dio.png"
                         alt="DIO"
                         width={100}
-                        height={37}
+                        height={35}
                     />
                 </Link>
             </div>
             {user.uid ? (
-                <div
-                    className={styles.icon}
-                    onClick={() => router.push('/perfil')}
-                >
-                    <Image
-                        src={user.photoURL ? user.photoURL : '/usuario.svg'}
-                        alt={user.displayName!}
-                        width={100}
-                        height={37}
-                    />
+                <div className={styles.btn}>
+                    <div
+                        className={styles.icon}
+                        onClick={() => router.push('/perfil')}
+                    >
+                        <Image
+                            src={user.photoURL ? user.photoURL : '/usuario.svg'}
+                            alt={user.displayName!}
+                            width={100}
+                            height={37}
+                        />
+                    </div>
+                    <button style={{ backgroundColor: '#d81010' }}>Sair</button>
                 </div>
             ) : (
                 <>

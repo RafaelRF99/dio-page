@@ -6,6 +6,8 @@
 
     display: flex;
     justify-content: space-between;
+    align-items: center;
+
 
     padding: 0.4rem 3rem;
 
@@ -14,6 +16,12 @@
         height: 100%;
 
         cursor: pointer;
+
+        a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
     }
 
     .icon {

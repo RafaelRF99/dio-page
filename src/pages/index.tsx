@@ -2,17 +2,17 @@ import styles from '../styles/Home.module.scss'
 
 import Head from 'next/head'
 import Image from 'next/image'
-import Link from 'next/link'
+
 import { Open_Sans } from 'next/font/google'
 
 import Layout from '@/components/Layout'
-import CheckRoute from '@/components/CheckRoute'
+import Link from 'next/link'
 
 const inter = Open_Sans({ subsets: ['latin'] })
 
 export default function App() {
     return (
-        <CheckRoute admin={false}>
+        <>
             <Head>
                 <title>DIO</title>
                 <meta
@@ -54,6 +54,6 @@ export default function App() {
                     </div>
                 </Layout>
             </main>
-        </CheckRoute>
+        </>
     )
 }

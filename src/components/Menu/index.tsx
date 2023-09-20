@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 
 export default function Menu() {
     const router = useRouter()
-    const { user } = useAuth()
+    const { user, logout } = useAuth()
 
     return (
         <menu className={styles.container}>
@@ -35,7 +35,12 @@ export default function Menu() {
                             height={37}
                         />
                     </div>
-                    <button style={{ backgroundColor: '#d81010' }}>Sair</button>
+                    <button
+                        onClick={() => logout()}
+                        style={{ backgroundColor: '#d81010' }}
+                    >
+                        Sair
+                    </button>
                 </div>
             ) : (
                 <>

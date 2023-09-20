@@ -16,6 +16,7 @@ interface authContextProps {
     cadastrar?: (email: string, password: string) => Promise<void>
     user: User
     loading: boolean
+    logout: () => void
 }
 
 export const AuthContext = createContext<authContextProps>(null!)
@@ -25,7 +26,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     const [user, setUser] = useState<User>({} as User)
     const [loading, setLoading] = useState(false)
 
-    function login(email: string, password: string) {
+    async function login(email: string, password: string) {
         setLoading(true)
         signInWithEmailAndPassword(auth, email, password)
             .then((res) => {
@@ -49,8 +50,16 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
         }
     }
 
+    async function logout() {
+        setUser({} as User)
+        setLoading(false)
+        router.push('/')
+    }
+
     return (
-        <AuthContext.Provider value={{ user, cadastrar, login, loading }}>
+        <AuthContext.Provider
+            value={{ user, cadastrar, login, loading, logout }}
+        >
             {children}
         </AuthContext.Provider>
     )

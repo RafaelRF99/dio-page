@@ -23,15 +23,26 @@ export default function Menu() {
                 </Link>
             </div>
             {user.uid ? (
-                <div className={styles.icon}>
-                    <Image src={user.photoURL ? user.photoURL : '/usuario.svg'} alt={user.displayName!}
-                        width={100} height={37} />
+                <div
+                    className={styles.icon}
+                    onClick={() => router.push('/perfil')}
+                >
+                    <Image
+                        src={user.photoURL ? user.photoURL : '/usuario.svg'}
+                        alt={user.displayName!}
+                        width={100}
+                        height={37}
+                    />
                 </div>
             ) : (
                 <>
                     <div className={styles.btn}>
-                        <button onClick={() => router.push('/autenticacao')}>Entrar</button>
-                        <button onClick={() => router.push('/autenticacao')}>Cadastrar</button>
+                        <button onClick={() => router.push('/autenticacao')}>
+                            Entrar
+                        </button>
+                        <button onClick={() => router.push('/autenticacao')}>
+                            Cadastrar
+                        </button>
                     </div>
                 </>
             )}
